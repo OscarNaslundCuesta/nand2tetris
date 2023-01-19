@@ -1,0 +1,54 @@
+/// 1: class Fraction {
+/// 2:     field int numerator, denominator;
+/// 3:     
+/// 4:     constructor Fraction new (int num, int den){
+/// 5:         let numerator=num;
+function Fraction.new 0 // 0
+push constant 2         // 1
+call Memory.alloc 1     // 2
+pop pointer 0           // 3
+push argument 0         // 4
+pop this 0              // 5
+/// 6:         let denominator=den;
+push argument 1         // 6
+pop this 1              // 7
+/// 7:         return this;
+push pointer 0          // 8
+return                  // 9
+/// 8:     }
+/// 9: 
+/// 10:     function int gcd (int a, int b){
+/// 11:         var int r;
+/// 12:         while (~(b=0)) {
+function Fraction.gcd 1 // 0
+label L1
+push argument 1         // 1
+push constant 0         // 2
+eq                      // 3
+not                     // 4
+if-goto L2              // 5
+goto L3                 // 6
+label L2
+/// 13:             let r = a - (b * (a / b));
+push argument 0         // 7
+push argument 1         // 8
+push argument 0         // 9
+push argument 1         // 10
+call Math.divide 2      // 11
+call Math.multiply 2    // 12
+sub                     // 13
+pop local 0             // 14
+/// 14:             let a = b;
+push argument 1         // 15
+pop argument 0          // 16
+/// 15:             let b = r;
+push local 0            // 17
+pop argument 1          // 18
+/// 16:         }
+goto L1                 // 19
+label L3
+/// 17:         return a;
+push argument 0         // 20
+return                  // 21
+/// 18:     }
+/// 19: } 

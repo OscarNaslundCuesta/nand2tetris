@@ -1,0 +1,22 @@
+class Main {
+	function void main() {
+
+		var Fraction f1;
+		var int gcd;
+		let f1 = Fraction.new(3, 15);
+
+		let gcd = Fraction.gcd(3,15);
+		
+
+		if ( gcd > 1 ) {
+			do Output.printString("The fraction is not reduced\n");
+			// do f1.reduce();
+			// do f1.print();
+		}
+		else {
+			do Output.printString("The fraction is reduced\n");
+			// do f1.print();
+		}
+		return;
+	}
+} 

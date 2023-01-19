@@ -1,0 +1,19 @@
+/// 1: class Fraction {
+/// 2:     field int numerator, denominator;
+/// 3:     
+/// 4:     constructor Fraction new (int num, int den){
+/// 5:         let numerator=num;
+function Fraction.new 0 // 0
+push constant 2         // 1
+call Memory.alloc 1     // 2
+pop pointer 0           // 3
+push argument 0         // 4
+pop this 0              // 5
+/// 6:         let denominator=den;
+push argument 1         // 6
+pop this 1              // 7
+/// 7:         return this;
+push pointer 0          // 8
+return                  // 9
+/// 8:     }
+/// 9: } 

@@ -1,0 +1,78 @@
+class List {
+	field int data;
+	field List next;
+
+	/* Creates a new List object. */
+	constructor List new(int car, List cdr) {
+		let data = car;
+		let next = cdr;
+		return this;
+	}
+
+	/* Disposes this List by recursively disposing its tail. */
+	method void dispose() {
+		if (~(next =  null)) {
+			do next.dispose();
+		}
+		// Use an OS routine to recycle the memory held by this object.
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	/* Prints the list*/
+
+	method void print() {
+		do Output.printString(" -> ");
+		do Output.printInt(data);
+		if (~(next =  null)) {
+			do next.print();
+		}
+		return;
+	}
+	
+	method int getData() { return data; }
+    method int getNext() { return next; }
+
+	/* Inserts the argument in the right position of the list (ascending order)*/
+	method void insertInOrder(int ins){
+		var int temp;
+		if (ins < data) {
+				let temp = data;	/*data should be stored and put as ins */
+				let data = ins;
+				let ins = temp;
+				let next = List.new(ins, next);	/* (data, next)  ins is saved as data in first list */
+				return;
+			}
+		
+		if (~(next = null)) {
+			do next.insertInOrder(ins);	/* recursive is next != null */
+		}
+
+		else {
+			let next = List.new(ins, null);	/* end of list */
+		}
+	
+	return;
+	}	
+ 
+
+	/* Searches the argument in the list, if found, it returns the corresponding List object*/
+	method List find(int toFind){
+		var List found;		/* found is needed because when returns happens it returns to the function that called it */
+		let found = null;	/* initiate found */
+		
+		if (toFind=data) {
+			return this;	/* doesnt end the method only returns "this" to the function that called it */
+		}
+
+		else {
+			if (next = null) {
+				return null;
+			}
+			else {
+				let found = next.find(toFind);	/* returns to here */
+			}
+		}
+	return found;
+	}	 
+}

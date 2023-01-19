@@ -1,0 +1,35 @@
+
+/**
+ * Implements a  square.
+ */
+class Square {
+
+    field int edge;
+
+    /** Constructs a new square with a given size. */
+    constructor Square new(int edge_length) {
+        let edge=edge_length;
+        return this;
+    }
+
+    /** Increments the size by 2. */
+    method void incSize() {
+	var int i,j;
+	var int k;
+	let edge = edge + 2;
+        return;
+    }
+
+    /** Decrements the size by 2. */
+    method void decSize() {
+        if (edge > 2) {
+            let edge = edge - 2;
+        }
+        return;
+    }
+    
+    method int area() {
+        return edge*edge;
+    }
+
+}

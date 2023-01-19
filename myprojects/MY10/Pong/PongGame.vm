@@ -1,0 +1,147 @@
+function PongGame.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 50
+pop this 6
+push constant 230
+push constant 229
+push this 6
+push constant 7
+call Bat.new 4
+pop this 0
+push constant 253
+push constant 222
+push constant 0
+push constant 511
+push constant 0
+push constant 229
+call Ball.new 6
+pop this 1
+push constant 400
+push constant 0
+call Ball.setDestination 2
+pop temp 0
+push constant 0
+push constant 238
+push constant 511
+push constant 240
+call Screen.drawRectangle 4
+pop temp 0
+push constant 22
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 8
+call String.new 1
+push constant 83
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 48
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+pop this 3
+push constant 0
+pop this 4
+push constant 0
+pop this 2
+push constant 0
+pop this 5
+push pointer 0
+return
+function PongGame.dispose 0
+push argument 0
+pop pointer 0
+call Bat.dispose 0
+pop temp 0
+call Ball.dispose 0
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function PongGame.newInstance 0
+call PongGame.new 0
+pop static 0
+push constant 0
+return
+function PongGame.getInstance 0
+push static 0
+return
+function PongGame.run 1
+push argument 0
+pop pointer 0
+label L1
+push this 3
+not
+if-goto L2
+goto L3
+label L2
+label L4
+push local 0
+push constant 0
+eq
+push this 3
+not
+and
+if-goto L5
+goto L6
+label L5
+call Keyboard.keyPressed 0
+pop local 0
+call Bat.move 0
+pop temp 0
+call PongGame.moveBall 0
+pop temp 0
+push constant 50
+call Sys.wait 1
+pop temp 0
+goto L4
+label L6
+push local 0
+push constant 130
+eq
+if-goto L7
+goto L8
+label L7
+push constant 1
+call Bat.setDirection 1
+pop temp 0
+goto L9
+label L8
+push local 0
+push constant 132
+eq
+if-goto L10
+goto L11
+label L10
+push constant 2
+call Bat.setDirection 1
+pop temp 0
+goto L12
+label L11
+push local 0
+push constant 140
+eq
+if-goto L13
+goto L14
+label L13
+push constant 0
+not
+pop this 3

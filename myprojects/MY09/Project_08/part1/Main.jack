@@ -1,0 +1,56 @@
+class Main {
+	function void main(){
+		var List v, w, x;
+		let v = List.new(3,null);
+		do v.insertInOrder(6);
+		do v.insertInOrder(5); 
+		
+		do v.print();
+		do Output.println();
+
+		do v.insertInOrder(2);
+		
+		do v.print();
+		do Output.println();
+
+		do v.insertInOrder(4);
+		
+		do v.print();
+		do Output.println();
+
+		do v.insertInOrder(10);
+		
+		do v.print();
+		do Output.println();
+
+
+		let w = v.find(5);
+		if (~ (w = null)){
+			do w.print();
+		}
+		else{
+			do Output.printString("Not Found!");
+		}
+		do Output.println();
+
+		let x = v.find(7);
+		if (~ (x = null)){
+			do x.print();
+		}
+		else{
+			do Output.printString("Not Found!");
+		}
+		do Output.println();
+
+		let x = v.find(2);
+		if (~ (x = null)){
+			do x.print();
+		}
+		else{
+			do Output.printString("Not Found!");
+		}
+		do Output.println();
+
+		return; 
+	}
+} 

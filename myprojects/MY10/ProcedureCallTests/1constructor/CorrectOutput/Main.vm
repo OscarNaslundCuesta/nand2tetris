@@ -1,0 +1,5 @@
+function Main.main 2
+push constant 3
+push constant 15
+call Fraction.new 2
+pop local 0

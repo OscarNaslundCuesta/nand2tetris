@@ -1,0 +1,25 @@
+/** Computes the absolute value of an integer. */
+class Main {
+    function void main() {
+        var int argument,absolute;
+	let argument = Keyboard.readInt("ENTER THE NUMBER: ");
+
+	if (argument = 0) {
+	  let absolute=argument;
+	}
+
+	if (argument < 0) {
+	  let absolute=-argument;
+	}
+	else {
+	  let absolute=argument;
+	}
+	
+	do Output.printString("THE ABSOLUTE VALUE IS: ");
+	do Output.printInt(absolute);
+	do Output.println();
+	
+	return;
+    }
+}
+ 

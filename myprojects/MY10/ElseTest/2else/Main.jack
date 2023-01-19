@@ -1,0 +1,14 @@
+/** Computes the absolute value of an integer. */
+class Main {
+    function void main() {
+        var int argument,absolute;
+	let argument = -5;
+
+	if (argument < 0) {
+	  let absolute=-argument;
+	}
+	
+	return;
+    }
+}
+ 

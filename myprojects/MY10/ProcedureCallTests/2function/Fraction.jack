@@ -1,0 +1,19 @@
+class Fraction {
+	field int numerator, denominator;
+	
+	constructor Fraction new (int num, int den){
+		let numerator=num;
+		let denominator=den;
+		return this;
+	}
+
+	function int gcd (int a, int b){
+		var int r;
+		while (~(b=0)) {
+			let r = a - (b * (a / b));
+			let a = b;
+			let b = r;
+		}
+		return a;
+	}
+} 

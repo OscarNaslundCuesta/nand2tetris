@@ -1,0 +1,251 @@
+/// 1: class Main {
+/// 2:     function void main() {
+/// 3: 
+/// 4:         var Fraction f1, f2, f3;
+/// 5:         var int gcd;
+/// 6:         let f1 = Fraction.new(3, 15);
+function Main.main 4    // 0
+push constant 3         // 1
+push constant 15        // 2
+call Fraction.new 2     // 3
+pop local 0             // 4
+/// 7:         let f2 = Fraction.new(1, 2);
+push constant 1         // 5
+push constant 2         // 6
+call Fraction.new 2     // 7
+pop local 1             // 8
+/// 8: 
+/// 9:         let gcd = Fraction.gcd(f1.getNumerator(),f1.getDenominator());
+push local 0            // 9
+call Fraction.getNumerator 1    // 10
+push local 0            // 11
+call Fraction.getDenominator 1  // 12
+call Fraction.gcd 2     // 13
+pop local 3             // 14
+/// 10:         
+/// 11: 
+/// 12:         if ( gcd > 1 ) {
+push local 3            // 15
+push constant 1         // 16
+gt                      // 17
+if-goto L1              // 18
+goto L2                 // 19
+label L1
+/// 13:             do Output.printString("The fraction is not reduced\n");
+push constant 29        // 20
+call String.new 1       // 21
+push constant 84        // 22
+call String.appendChar 2        // 23
+push constant 104       // 24
+call String.appendChar 2        // 25
+push constant 101       // 26
+call String.appendChar 2        // 27
+push constant 32        // 28
+call String.appendChar 2        // 29
+push constant 102       // 30
+call String.appendChar 2        // 31
+push constant 114       // 32
+call String.appendChar 2        // 33
+push constant 97        // 34
+call String.appendChar 2        // 35
+push constant 99        // 36
+call String.appendChar 2        // 37
+push constant 116       // 38
+call String.appendChar 2        // 39
+push constant 105       // 40
+call String.appendChar 2        // 41
+push constant 111       // 42
+call String.appendChar 2        // 43
+push constant 110       // 44
+call String.appendChar 2        // 45
+push constant 32        // 46
+call String.appendChar 2        // 47
+push constant 105       // 48
+call String.appendChar 2        // 49
+push constant 115       // 50
+call String.appendChar 2        // 51
+push constant 32        // 52
+call String.appendChar 2        // 53
+push constant 110       // 54
+call String.appendChar 2        // 55
+push constant 111       // 56
+call String.appendChar 2        // 57
+push constant 116       // 58
+call String.appendChar 2        // 59
+push constant 32        // 60
+call String.appendChar 2        // 61
+push constant 114       // 62
+call String.appendChar 2        // 63
+push constant 101       // 64
+call String.appendChar 2        // 65
+push constant 100       // 66
+call String.appendChar 2        // 67
+push constant 117       // 68
+call String.appendChar 2        // 69
+push constant 99        // 70
+call String.appendChar 2        // 71
+push constant 101       // 72
+call String.appendChar 2        // 73
+push constant 100       // 74
+call String.appendChar 2        // 75
+push constant 92        // 76
+call String.appendChar 2        // 77
+push constant 110       // 78
+call String.appendChar 2        // 79
+call Output.printString 1       // 80
+pop temp 0              // 81
+/// 14:             do f1.reduce();
+push local 0            // 82
+call Fraction.reduce 1  // 83
+pop temp 0              // 84
+/// 15:             do f1.print();
+push local 0            // 85
+call Fraction.print 1   // 86
+pop temp 0              // 87
+/// 16:         }
+/// 17:         else {
+goto L3                 // 88
+label L2
+/// 18:             do Output.printString("The fraction is reduced\n");
+push constant 25        // 89
+call String.new 1       // 90
+push constant 84        // 91
+call String.appendChar 2        // 92
+push constant 104       // 93
+call String.appendChar 2        // 94
+push constant 101       // 95
+call String.appendChar 2        // 96
+push constant 32        // 97
+call String.appendChar 2        // 98
+push constant 102       // 99
+call String.appendChar 2        // 100
+push constant 114       // 101
+call String.appendChar 2        // 102
+push constant 97        // 103
+call String.appendChar 2        // 104
+push constant 99        // 105
+call String.appendChar 2        // 106
+push constant 116       // 107
+call String.appendChar 2        // 108
+push constant 105       // 109
+call String.appendChar 2        // 110
+push constant 111       // 111
+call String.appendChar 2        // 112
+push constant 110       // 113
+call String.appendChar 2        // 114
+push constant 32        // 115
+call String.appendChar 2        // 116
+push constant 105       // 117
+call String.appendChar 2        // 118
+push constant 115       // 119
+call String.appendChar 2        // 120
+push constant 32        // 121
+call String.appendChar 2        // 122
+push constant 114       // 123
+call String.appendChar 2        // 124
+push constant 101       // 125
+call String.appendChar 2        // 126
+push constant 100       // 127
+call String.appendChar 2        // 128
+push constant 117       // 129
+call String.appendChar 2        // 130
+push constant 99        // 131
+call String.appendChar 2        // 132
+push constant 101       // 133
+call String.appendChar 2        // 134
+push constant 100       // 135
+call String.appendChar 2        // 136
+push constant 92        // 137
+call String.appendChar 2        // 138
+push constant 110       // 139
+call String.appendChar 2        // 140
+call Output.printString 1       // 141
+pop temp 0              // 142
+/// 19:             do f1.print();
+push local 0            // 143
+call Fraction.print 1   // 144
+pop temp 0              // 145
+/// 20:         }
+label L3
+/// 21:         let f3 = f1.plus(f2,1);
+push local 0            // 146
+push local 1            // 147
+push constant 1		//
+call Fraction.plus 3    // 148
+pop local 2             // 149
+/// 22:         do Output.printString("The sum of the fractions is: \n");
+push constant 31        // 150
+call String.new 1       // 151
+push constant 84        // 152
+call String.appendChar 2        // 153
+push constant 104       // 154
+call String.appendChar 2        // 155
+push constant 101       // 156
+call String.appendChar 2        // 157
+push constant 32        // 158
+call String.appendChar 2        // 159
+push constant 115       // 160
+call String.appendChar 2        // 161
+push constant 117       // 162
+call String.appendChar 2        // 163
+push constant 109       // 164
+call String.appendChar 2        // 165
+push constant 32        // 166
+call String.appendChar 2        // 167
+push constant 111       // 168
+call String.appendChar 2        // 169
+push constant 102       // 170
+call String.appendChar 2        // 171
+push constant 32        // 172
+call String.appendChar 2        // 173
+push constant 116       // 174
+call String.appendChar 2        // 175
+push constant 104       // 176
+call String.appendChar 2        // 177
+push constant 101       // 178
+call String.appendChar 2        // 179
+push constant 32        // 180
+call String.appendChar 2        // 181
+push constant 102       // 182
+call String.appendChar 2        // 183
+push constant 114       // 184
+call String.appendChar 2        // 185
+push constant 97        // 186
+call String.appendChar 2        // 187
+push constant 99        // 188
+call String.appendChar 2        // 189
+push constant 116       // 190
+call String.appendChar 2        // 191
+push constant 105       // 192
+call String.appendChar 2        // 193
+push constant 111       // 194
+call String.appendChar 2        // 195
+push constant 110       // 196
+call String.appendChar 2        // 197
+push constant 115       // 198
+call String.appendChar 2        // 199
+push constant 32        // 200
+call String.appendChar 2        // 201
+push constant 105       // 202
+call String.appendChar 2        // 203
+push constant 115       // 204
+call String.appendChar 2        // 205
+push constant 58        // 206
+call String.appendChar 2        // 207
+push constant 32        // 208
+call String.appendChar 2        // 209
+push constant 92        // 210
+call String.appendChar 2        // 211
+push constant 110       // 212
+call String.appendChar 2        // 213
+call Output.printString 1       // 214
+pop temp 0              // 215
+/// 23:         do f3.print();
+push local 2            // 216
+call Fraction.print 1   // 217
+pop temp 0              // 218
+/// 24:         return;
+push constant 0         // 219
+return                  // 220
+/// 25:     }
+/// 26: } 

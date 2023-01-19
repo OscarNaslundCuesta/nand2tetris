@@ -1,0 +1,31 @@
+// OR 16 WAY!!!!
+
+/**
+ * 8-way Or: 
+ * out = (in[0] or in[1] or ... or in[7])
+ */
+
+CHIP Or16Way {
+    IN in[16];
+    OUT out;
+
+    PARTS:
+    Or(a=in[0], b=in[1], out=or1);
+    Or(a=in[2], b=in[3], out=or2);
+    Or(a=in[4], b=in[5], out=or3);
+    Or(a=in[6], b=in[7], out=or4);
+    Or(a=in[8], b=in[9], out=or5);
+    Or(a=in[10], b=in[11], out=or6);
+    Or(a=in[12], b=in[13], out=or7);
+    Or(a=in[14], b=in[15], out=or8);
+
+    Or(a=or1, b=or2, out=or1x1);
+    Or(a=or3, b=or4, out=or1x2);
+    Or(a=or5, b=or6, out=or1x3);
+    Or(a=or7, b=or8, out=or1x4);
+
+    Or(a=or1x1, b=or1x2, out=or2x1);
+    Or(a=or1x3, b=or1x4, out=or2x2);
+
+    Or(a=or2x1, b=or2x2, out=out);
+}

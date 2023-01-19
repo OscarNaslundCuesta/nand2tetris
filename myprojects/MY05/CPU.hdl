@@ -1,0 +1,131 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/05/CPU.hdl
+
+/**
+ * The Hack CPU (Central Processing unit), consisting of an ALU,
+ * two registers named A and D, and a program counter named PC.
+ * The CPU is designed to fetch and execute instructions written in 
+ * the Hack machine language. In particular, functions as follows:
+ * Executes the inputted instruction according to the Hack machine 
+ * language specification. 
+
+ * The D and A in the language specification
+ * refer to CPU-resident registers, while M refers to the external
+ * memory location addressed by A, i.e. to Memory[A]. The inM input 
+ * holds the value of this location. If the current instruction needs 
+ * to write a value to M, the value is placed in outM, the address 
+ * of the target location is placed in the addressM output, and the 
+ * writeM control bit is asserted. (When writeM==0, any value may 
+ * appear in outM). The outM and writeM outputs are combinational: 
+ * they are affected instantaneously by the execution of the current 
+ * instruction. The addressM and pc outputs are clocked: although they 
+ * are affected by the execution of the current instruction, they commit 
+ * to their new values only in the next time step. If reset==1 then the 
+ * CPU jumps to address 0 (i.e. pc is set to 0 in next time step) rather 
+ * than to the address resulting from executing the current instruction. 
+ */
+
+CHIP CPU {
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset==1) or continue executing
+                         // the current program (reset==0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write to M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+    PARTS:
+    //if op-code = 1 --> mux1out = ALUout
+    Mux16(a=instruction, b=ALUout, sel=instruction[15], out=mux1out); //KLAR
+
+    //A register
+    //Control bit = instruction[5]
+    Not(in=instruction[15], out=noti15);
+    Or(a=noti15, b=instruction[5], out=orAreg);
+    ARegister(in=mux1out, load=orAreg, out=AregOut, out[0..14]=addressM);
+
+    //D register
+    //Control bit = instruction[4]
+    And(a=instruction[15], b=instruction[4], out=andDreg);
+    DRegister(in=ALUout, load=andDreg, out=DregOut);
+
+    //2nd Mux
+    //control bit is one of the bits in the instruction
+    And(a=instruction[15], b=instruction[12], out=andmux2);
+    Mux16(a=AregOut, b=inM, sel=andmux2, out=mux2out);
+
+    //Control bits = instruction[6..11]
+        //zr, // 1 if out=0, 0 otherwise
+        //ng; // 1 if out<0, 0 otherwise
+    ALU(x=DregOut, y=mux2out, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6], out=ALUout, out=outM, zr=zr, ng=ng);
+
+    //instruction[3]=writeM
+    And(a=instruction[3], b=instruction[15], out=writeM);
+    
+    //-----------------------------------------------------------------------------------------------------------
+    //if jjj = 000  then no jump (load = 0)
+    //if jjj = 111  then jump (load = 1)
+    And(a=instruction[0], b=instruction[1], out=and1out);
+    And(a=and1out, b=instruction[2], out=and2out);
+
+    //JGT if i0=true i1=false i2=false and zr=0 and ng=0
+    Or(a=instruction[1], b=instruction[2], out=or0x0);
+    Not(in=or0x0, out=not0x0);
+    Or(a=ng, b=zr, out=or0x1);
+    Not(in=or0x1, out=not0x1);
+    And(a=not0x0, b=not0x1, out=and0x0);
+    And(a=and0x0, b=instruction[0], out=and0x1);
+
+    //JGE if i0=true, i1=true, i2=false and ng=false
+    And(a=instruction[0], b=instruction[1], out=and01x0);
+    Or(a=instruction[2], b=ng, out=or01x0);
+    Not(in=or01x0, out=not01x0);
+    And(a=and01x0, b=not01x0, out=and01x1);
+
+    //Or JGT/JGE
+    Or(a=and0x1, b=and01x1, out=and1x1);
+
+    //JLT if i0 = false, i1 = false, i2 = true and ng = true
+    Or(a=instruction[0], b=instruction[1], out=or2x0);
+    Not(in=or2x0, out=not2x0);
+    And(a=instruction[2], b=ng, out=and2x0);
+    And(a=and2x0, b=not2x0, out=and2x1);
+
+    //JEQ if i0 = false, i1 = true, i3 = false and zr = true
+    Or(a=instruction[0], b=instruction[2], out=or3x0);
+    Not(in=or3x0, out=not3x0);
+    And(a=instruction[1], b=zr, out=and3x0);
+    And(a=and3x0, b=not3x0, out=and3x1);
+
+    //JNE if i0 = true, i2 = true, i1 = false and zr = false
+    Or(a=instruction[1], b=zr, out=or4x0);
+    Not(in=or4x0, out=not4x0);
+    And(a=instruction[0], b=instruction[2], out=and4x0);
+    And(a=and4x0, b=not4x0, out=and4x1);
+
+    //JLE if i0 = false, i1 = true, i2 = true and XOR(ng,zr)
+    And(a=instruction[1], b=instruction[2], out=and5x0);
+    Not(in=instruction[0], out=not5x0);
+    And(a=and5x0, b=not5x0, out=and5x1);
+    Xor(a=ng, b=zr, out=xor5x0);
+    And(a=and5x1, b=xor5x0, out=and5x2);
+
+    //if any of them are true
+    Or(a=and2out, b=and1x1, out=and6x0);
+    Or(a=and2x1, b=and3x1, out=and7x0);
+    Or(a=and4x1, b=and5x2, out=and8x0);
+
+    Or(a=and6x0, b=and7x0, out=and9x0);
+    Or(a=and8x0, b=and9x0, out=and10x0);
+
+    //Only load if it is a C-instruction
+    And(a=instruction[15], b=and10x0, out=andfinal);
+
+    PC(in=AregOut, load=andfinal, inc=true, reset=reset, out[0..14]=pc);
+}

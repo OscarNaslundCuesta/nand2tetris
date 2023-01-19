@@ -1,0 +1,21 @@
+//A
+    Not(in=sel[0], out=notsel0);
+    Not(in=sel[1], out=notsel1);
+    And(a=notsel0, b=notsel1, out=andselA);
+    And(a=andselA, b=a, out=compA);
+
+    //B
+    And(a=notsel0, b=sel[1], out=andselB);
+    And(a=andselB, b=b, out=compB);
+
+    //C
+    And(a=sel[0], b=notsel1, out=andselC);
+    And(a=andselC, b=c, out=compC);
+
+    //D
+    And(a=sel[0], b=sel[1], out=andselD);
+    And(a=andselC, b=d, out=compC);
+
+    Or(a=compA, b=compB, out=compAB);
+    Or(a=compC, b=compD, out=compCD);
+    Or(a=compAB, b=compCD, out=out);

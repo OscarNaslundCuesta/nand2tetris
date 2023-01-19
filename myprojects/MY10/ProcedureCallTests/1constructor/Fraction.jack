@@ -1,0 +1,9 @@
+class Fraction {
+	field int numerator, denominator;
+	
+	constructor Fraction new (int num, int den){
+		let numerator=num;
+		let denominator=den;
+		return this;
+	}
+} 

@@ -1,0 +1,37 @@
+/// 1: /** Computes the absolute value of an integer. */
+/// 2: class Main {
+/// 3:     function void main() {
+/// 4:         var int argument,absolute;
+/// 5:     let argument = -5;
+function Main.main 2    // 0
+push constant 5         // 1
+neg                     // 2
+pop local 0             // 3
+/// 6: 
+/// 7:     if (argument < 0) {
+push local 0            // 4
+push constant 0         // 5
+lt                      // 6
+if-goto L1              // 7
+goto L2                 // 8
+label L1
+/// 8:       let absolute=-argument;
+push local 0            // 9
+neg                     // 10
+pop local 1             // 11
+/// 9:     }
+/// 10:     else {
+goto L3                 // 12
+label L2
+/// 11:       let absolute=argument;
+push local 0            // 13
+pop local 1             // 14
+/// 12:     }
+label L3
+/// 13:     
+/// 14:     return;
+push constant 0         // 15
+return                  // 16
+/// 15:     }
+/// 16: }
+/// 17:  

@@ -1,0 +1,28 @@
+/// 1: class Main {
+/// 2:     function void main() {
+/// 3: 
+/// 4:         var Fraction f1;
+/// 5:         var int gcd;
+/// 6:         let f1 = Fraction.new(3, 15);
+function Main.main 2    // 0
+push constant 3         // 1
+push constant 15        // 2
+call Fraction.new 2     // 3
+pop local 0             // 4
+/// 7: /*
+/// 8:         let gcd = Fraction.gcd(3,15);
+/// 9:         
+/// 10: 
+/// 11:         if ( gcd > 1 ) {
+/// 12:             do Output.printString("The fraction is not reduced\n");
+/// 13:             // do f1.reduce();
+/// 14:             // do f1.print();
+/// 15:         }
+/// 16:         else {
+/// 17:             do Output.printString("The fraction is reduced\n");
+/// 18:             // do f1.print();
+/// 19:         }
+/// 20:         return;
+/// 21: */
+/// 22:     }
+/// 23: } 
