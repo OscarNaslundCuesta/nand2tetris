@@ -1,0 +1,71 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+
+/**
+ * Memory operations library.
+ */ 
+class Memory_old {
+    
+    static array ram;
+    static int pointer;
+    static int free;
+    
+
+    /** Initializes memory parameters. */
+    function void init() {
+        let ram = 0;
+        let pointer = 2048;
+        let free = 2048;
+        
+        return;
+    }
+
+    /** Returns the value of the main memory at the given address. */
+    function int peek(int address) {
+        var int value;
+        var array memory;
+
+        let memory = 0;
+        let value = memory[address];
+
+        return value;
+
+        //let x = memory[j]
+        //let memory[j] = y
+        
+        // To set RAM[addr] to val:
+        //let ram[addr] = val;
+
+    }
+
+    /** Sets the value of the main memory at this address
+     *  to the given value. */
+    function void poke(int address, int value) {
+        
+        var array memory;
+
+        let memory = 0;
+        let memory[address] = value;
+
+        return;
+    }
+
+    /** finds and allocates from the heap a memory block of the 
+     *  specified size and returns a reference to its base address. */
+    function int alloc(int size) {
+        let pointer = free;
+        let free = free + size;
+
+        return pointer;
+
+        
+        //return block
+    }
+
+    /** De-allocates the given object and frees its space. */
+    function void deAlloc(int object) {
+        return;
+    }    
+}
