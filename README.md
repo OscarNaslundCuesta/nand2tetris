@@ -1,5 +1,14 @@
-# nand2tetris
-Completed nand2tetris part 1 &amp; 2 as part of the course Computer Systems from KTH
-Langauges: Hardware description language (hdl), Assembly (Hack), Python, VM-language
-Tags: Assembler, compiler, operating system, stack, vm, logic gates
-All my written code is in the myprojects folder
+# Nand2Tetris
+
+Repository for my work on the [Nand2Tetris](https://www.nand2tetris.org/) project, as part of KTH's Computer Systems course. It consists of building a modern computer from the ground up, from logic gates to an operating system.
+
+## Summary
+- **Languages**: HDL, Hack Assembly, Python, Jack, VM-Language
+- **Concepts**: Logic Gates, Memory, CPU, Assembler, Compiler (two-tier), Computer Architecture, Stack, Operating System, 
+
+## Structure
+- `myprojects`: Contains all developed code.
+
+![Project Snapshot](image.webp)
+
+
